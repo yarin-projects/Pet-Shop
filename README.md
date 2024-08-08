@@ -4,6 +4,8 @@
 
 The Pet Shop Management System is a web application designed to manage a pet shop's operations. It provides functionalities for managing animals, categories, comments, and users within a pet shop environment. The system includes user authentication and authorization, enabling both regular users and administrators to interact with the application in different ways.
 
+The project was completed on July 11th, 2024.
+
 ## Features
 
 - **Animal Management**: View, create, edit, and delete animals in the pet shop. Animals are categorized, and comments can be added to individual animals.
