@@ -1,0 +1,25 @@
+﻿@model PetShop.Models.ViewModels.CategoryCreateVM
+@{
+    ViewData["Title"] = "PetShop - Add Category";
+}
+<a asp-controller="admin" asp-action="index" class="btn btn-primary">Go Back</a>
+<br />
+<br />
+<div class="container">
+    <h2>Add New Category</h2>
+    <form id="categoryForm" class="needs-validation" method="post" novalidate>
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label for="Name">Category Name:</label>
+            <input type="text" class="form-control" id="Name" name="Name" onblur="this.value=this.value.trim()" value="@Model.Name" pattern="^\p{L}{3,25}$" required />
+            <div class="invalid-feedback">
+                Please enter a valid category name (letters only, 3-25 characters).
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <button type="submit" id="btnSubmit" class="btn btn-secondary mt-2">Submit</button>
+        <a asp-controller="admin" asp-action="index" class="btn btn-primary mt-2">Cancel</a>
+    </form>
+</div>
+
+<script src="~/scripts/add-category.js" defer></script>

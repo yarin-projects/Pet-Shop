@@ -1,0 +1,63 @@
+﻿@model PetShop.Models.ViewModels.AnimalCreateVM
+@{
+    ViewData["Title"] = "PetShop - Add Animal";
+}
+<a asp-controller="admin" asp-action="index" class="btn btn-primary">Go Back</a>
+<br />
+<br />
+<div class="container">
+    <h2>Add New Animal</h2>
+    <form id="animalForm" class="needs-validation" method="post" enctype="multipart/form-data" novalidate>
+        @Html.AntiForgeryToken()
+        <div class="form-group">
+            <label for="Name">Name:</label>
+            <input type="text" class="form-control" id="Name" name="Name" onblur="this.value=this.value.trim()" required />
+            <div class="invalid-feedback">
+                Please enter a valid name (letters only, 3-15 characters).
+            </div>
+            <span asp-validation-for="Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Age">Age:</label>
+            <input type="number" class="form-control" id="Age" name="Age" min="1" max="25" required />
+            <div class="invalid-feedback">
+                Age has to be between 1-25.
+            </div>
+            <span asp-validation-for="Age" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="PictureName">Upload Image:</label>
+            <input type="file" class="form-control" id="PictureName" name="Picture" onblur="this.value=this.value.trim()" accept="image/*" required />
+            <div class="invalid-feedback">
+                Please upload a valid image file.
+            </div>
+            <span asp-validation-for="Picture" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="Description">Description:</label>
+            <textarea class="form-control" id="Description" name="Description" maxlength="40" onblur="this.value=this.value.trim()" rows="3" required></textarea>
+            <div class="invalid-feedback">
+                Description must be between 3 and 40 characters long.
+            </div>
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label for="CategoryId">Category:</label>
+            <select class="form-control" id="CategoryId" name="CategoryId" required>
+                <option value="">Select Category</option>
+                @foreach (var category in Model.Categories!)
+                {
+                    <option value="@category.CategoryId">@category.Name</option>
+                }
+            </select>
+            <div class="invalid-feedback">
+                Category is required.
+            </div>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+        <button type="submit" id="btnSubmit" class="btn btn-secondary mt-2">Submit</button>
+        <a asp-controller="admin" asp-action="index" class="btn btn-primary mt-2">Cancel</a>
+    </form>
+</div>
+
+<script src="~/scripts/add-animal.js" defer></script>

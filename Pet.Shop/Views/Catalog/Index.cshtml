@@ -1,0 +1,68 @@
+﻿@model PetShop.Models.ViewModels.AnimalCatalogVM
+@{
+    ViewData["Title"] = "PetShop - Catalog";
+}
+<form method="get" id="filterForm" asp-controller="catalog" asp-action="index">
+    <div class="form-group">
+        <label id="lblCategory" for="category" class="fs-5">Select Category:</label>
+        <select class="form-control" id="category" name="categoryId" onchange="submitForm()">
+            <option value="">All Categories</option>
+            @foreach (var category in Model.Categories!)
+            {
+                if (Model.SelectedCategoryId == category.CategoryId)
+                {
+                    <option value="@category.CategoryId" selected>@category.Name</option>
+                }
+                else
+                {
+                    <option value="@category.CategoryId">@category.Name</option>
+                }
+            }
+        </select>
+    </div>
+    <div class="form-group mt-3">
+        <label for="sortOrder" class="fs-5">Sort By:</label>
+        <select class="form-control" id="sortOrder" name="sortOrder" onchange="submitForm()">
+        @if (Model.SelectedSortOrder == "name")
+        {
+            <option value="category">Category</option>
+            <option value="name" selected>Name</option>
+            <option value="comments">Popularity</option>
+        }
+        else if (Model.SelectedSortOrder == "comments")
+        {
+            <option value="category">Category</option>
+            <option value="name">Name</option>
+            <option value="comments" selected>Popularity</option>
+        }
+        else
+        {
+            <option value="category" selected>Category</option>
+            <option value="name">Name</option>
+            <option value="comments">Popularity</option>
+        }
+        </select>
+    </div>
+    <div class="form-group mt-3">
+        <input type="hidden" id="isDescending" name="isDescending" value="@Model.IsDescending" />
+        <label for="btnToggleSortOrder" class="fs-5">Toggle Sort Order:</label>
+        <button type="button" class="btn btn-secondary fs-5" id="btnToggleSortOrder" onclick="toggleSortOrder()">@(Model.IsDescending == "true" ? "↓" : "↑")</button>
+    </div>
+</form>
+
+<div class="row mt-4">
+    @foreach (var animal in Model.Animals!)
+    {
+        <div class="col-md-4" style="display:inline-block;">
+            <div class="card mb-4">
+                <img src="~/images/@animal.PictureName" class="card-img-top" alt="@animal.Name" style="height: 250px; object-fit: contain;">
+                <div class="card-body">
+                    <h5 class="card-title">@animal.Name</h5>
+                    <p class="card-text">@animal.Description</p>
+                    <a asp-controller="catalog" asp-action="animal" asp-route-id="@animal.AnimalId" class="btn btn-primary">View Details</a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+

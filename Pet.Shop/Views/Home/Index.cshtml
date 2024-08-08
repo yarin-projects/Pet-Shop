@@ -1,0 +1,21 @@
+﻿@model IEnumerable<PetShop.Models.Animal>
+@{
+    ViewData["Title"] = "PetShop - Homepage";
+}
+
+<h1>These are the two most popular animals!</h1>
+<div class="row">
+    @foreach (var animal in Model)
+    {
+        <div class="col-sm-6">
+            <div class="card mb-4">
+                <img src="~/images/@animal.PictureName" class="card-img-top img-fluid" alt="@animal.Name">
+                <div class="card-body">
+                    <h5 class="card-title">@animal.Name</h5>
+                    <p class="card-text">@animal.Description</p>
+                    <p class="card-text"><small class="text-muted">Number of comments: @animal.Comments.Count()</small></p>
+                </div>
+            </div>
+        </div>
+    }
+</div>

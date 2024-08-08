@@ -1,0 +1,52 @@
+﻿.header {
+    background-color: #CCE6E7;
+    text-align: center;
+}
+
+    .header img {
+        max-width: auto;
+        height: 130px;
+    }
+
+.navbar-nav .nav-link {
+    color: #ffffff;
+    margin-right: 7px;
+}
+
+body {
+    background-color: #B0C6CE;
+}
+
+nav {
+    background-color: #8bb1b2;
+    margin-bottom: 20px;
+}
+
+#lblCategory {
+    margin-bottom: 5px;
+}
+
+.btn-primary {
+    background-color: #8bb1b2;
+    border-color: #8bb1b2;
+}
+
+    .btn-primary:hover {
+        background-color: #5f8e8f;
+        border-color: #5f8e8f;
+    }
+
+.btn-secondary {
+    background-color: #5f8e8f;
+    border-color: #5f8e8f;
+}
+
+    .btn-secondary:hover {
+        background-color: #476a6b;
+        border-color: #476a6b;
+    }
+
+.accordion-class {
+    background-color: #c8d7dd;
+    border: none;
+}
